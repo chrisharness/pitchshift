@@ -1,0 +1,82 @@
+#N canvas -2468 973 2304 1232 12;
+#X obj 105 76 adc~;
+#X obj 135 136 delwrite~ \$0-audio 200;
+#X obj 743 305 phasor~;
+#X obj 737 177 - 1;
+#X obj 771 74 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X obj 762 240 * -20;
+#X obj 750 378 +~ 0.5;
+#X obj 198 488 -~ 0.5;
+#X obj 198 541 *~ 0.5;
+#X obj 198 615 cos~;
+#X obj 314 704 *~, f 4;
+#X obj 381 627 vd~ \$0-audio;
+#X obj 370 558 *~ 50;
+#X obj 833 565 -~ 0.5;
+#X obj 830 621 *~ 0.5;
+#X obj 833 692 cos~;
+#X obj 834 785 *~, f 4;
+#X obj 1016 704 vd~ \$0-audio;
+#X obj 1005 635 *~ 50;
+#X obj 747 449 wrap~;
+#X obj 601 922 +~;
+#X floatatom 863 125 5 0 0 0 - - - 0;
+#X obj 1562 477 pitchshift~;
+#X obj 590 986 output~;
+#X obj 1541 663 output~;
+#X obj 1481 340 adc~;
+#X text 958 53 here you can modify the pitch...use the slider and start
+talking into your audio input...see the effect! (works great with headphone/mic
+setup so you don't get feedback from audio output->adc);
+#X text 943 176 honestly this was a lot tougher to put all inside a
+blackbox external than I thought it would've been.;
+#X text 935 267 this is different than what G09 implements. this is
+real-time pitchshifting vs static pitch shift.;
+#X obj 1645 301 hsl 128 15 0 2 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 0 1;
+#X floatatom 1737 352 5 0 0 0 - - - 0;
+#X text 655 50 pitch slider;
+#X text 1704 257 pitch slider;
+#X text 1475 287 audio input;
+#X text 169 71 audio input written to delayline;
+#X text 485 631 variable delay object1;
+#X text 1117 703 variable delay object2;
+#X text 53 627 cos-obj1;
+#X text 702 708 cos-obj2;
+#X text 570 861 sum of signals;
+#X text 1636 69 pitch shift is unfortuntely horribly broken at the
+moment...I couldn't really get to building out the abstraction. it
+just works as a simple delay with short fixed time (sometimes \, the
+adc crashes \, don't know why.) see comments inside pitchshift~.c for
+my attempt at implementing the blackbox., f 78;
+#X connect 0 0 1 0;
+#X connect 0 1 1 0;
+#X connect 2 0 6 0;
+#X connect 2 0 12 0;
+#X connect 2 0 7 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 4 0 21 0;
+#X connect 5 0 2 0;
+#X connect 6 0 19 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 20 0;
+#X connect 11 0 10 1;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 20 1;
+#X connect 17 0 16 1;
+#X connect 18 0 17 0;
+#X connect 19 0 13 0;
+#X connect 19 0 18 0;
+#X connect 20 0 23 0;
+#X connect 22 0 24 0;
+#X connect 25 0 22 0;
+#X connect 25 1 22 0;
+#X connect 29 0 30 0;
+#X connect 29 0 22 1;
